@@ -11,6 +11,8 @@ import ProgressBar from "@/components/ProgressBar";
 import { FormValues } from "@/interfaces/form_values";
 import { renderCard } from "@/components/RenderCard";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { InviteType } from "./enums/invite_type";
+import { InvitePlan } from "./enums/invite_plan";
 
 export default function MultiStepForm() {
   const searchParams = useSearchParams();
@@ -44,6 +46,8 @@ export default function MultiStepForm() {
     }
   };
 
+
+
   const form = useForm<FormValues>({
     defaultValues: {
       title: "",
@@ -51,11 +55,30 @@ export default function MultiStepForm() {
       message: "",
       email: "",
       date: new Date(),
-      url_music: "",
+      url_music: null,
+      invite_type:  InviteType as unknown as InviteType,
+      invite_plan: InvitePlan as unknown as InvitePlan
     },
     onSubmit: async ({ value }) => {
-      // Do something with form data
-      console.log(value);
+
+    const formdata = new FormData();
+
+    formdata.append('title', value.title)
+    formdata.append('sub_title', value.sub_title)
+    formdata.append('message', value.message)
+    formdata.append('email', value.email)
+    formdata.append('date', value.date.toISOString())
+    if ( value.url_music && value.url_music.length ) formdata.append('url_music', value.url_music)
+    formdata.append('invite_type', value.invite_type)
+    formdata.append('invite_plan', value.invite_plan)
+
+     const rs = await fetch('/', {
+        headers: { "Content-type": "multipart/form-data" },
+        method: 'POST',
+        body: formdata
+     })
+     const data = await rs.json()
+     console.log(data)
     },
   });
 
@@ -90,7 +113,11 @@ export default function MultiStepForm() {
                   // eslint-disable-next-line react/no-children-prop
                   children={([canSubmit]) => (
                     <button
-                      className="py-2.5 px-6 text-sm rounded-full bg-gradient-to-r from-orange-600 via-orange-500 to-orange-400 shadow-lg shadow-orange-500/50 text-white cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-gradient-to-l"
+                    className={`py-2.5 px-6 text-sm rounded-full font-semibold text-center cursor-pointer transition-all duration-500 text-white shadow-xs ${
+                        !canSubmit
+                          ? 'bg-gray-500 shadow-none cursor-not-allowed'
+                          : 'bg-gradient-to-r from-orange-600 via-orange-500 to-orange-400 shadow-lg shadow-orange-500/50 hover:bg-gradient-to-l'
+                      }`}
                       type="button"
                       onClick={(e) => {
                         if (canSubmit) handleNext(e);
