@@ -1,42 +1,33 @@
-import { FieldApi, ReactFormExtendedApi } from "@tanstack/react-form";
+import {  ReactFormExtendedApi } from "@tanstack/react-form";
 import { Input } from "./ui/input";
-import InteractiveHoverButton from "./ui/interactive-hover-button";
+import HandleInviteTypeButtons from "./ui/handle-invite-type-buttons";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import { FormValues } from "@/interfaces/form_values";
+import { FieldInfo } from "./Fieldinfo";
+import { InviteType } from "@/app/enums/invite_type";
+import HandleInvitePlanButtons from "./ui/handle-invite-plan-buttons";
+import { InvitePlan } from "@/app/enums/invite_plan";
 
 export const renderFormStep = (
   step: number,
   form: ReactFormExtendedApi<FormValues>,
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function FieldInfo({ field }: { field: FieldApi<any, any, any, any> }) {
-    return (
-      <>
-        {field.state.meta.isTouched && field.state.meta.errors.length ? (
-          <em className="text-red-500 text-sm">
-            {field.state.meta.errors.join(",")}
-          </em>
-        ) : null}
-        {field.state.meta.isValidating ? "Validating..." : null}
-      </>
-    );
-  }
 
   switch (step) {
     case 0:
       return (
         <div className="grid grid-cols-3 h-96 md:grid-cols-1 sm:grid-cols-1 gap-6 overflow-auto">
-          <InteractiveHoverButton text="Casais" />
-          <InteractiveHoverButton text="Melhor amigo(a)" />
-          <InteractiveHoverButton text="Aniversario" />
+          <HandleInviteTypeButtons text="Casais" formApi={form} value={InviteType.LOVE} />
+          <HandleInviteTypeButtons text="Melhor amigo(a)" formApi={form}  value={InviteType.BESTFRIENDS} />
+          <HandleInviteTypeButtons text="Aniversario" formApi={form}  value={InviteType.BIRTHDAY}/>
         </div>
       );
     case 1:
       return (
         <div className="grid grid-cols-2 h-96 md:grid-cols-2 gap-2 overflow-auto">
-          <InteractiveHoverButton text="Basico" />
-          <InteractiveHoverButton text="Premium" />
+          <HandleInvitePlanButtons text="Basico" formApi={form} value={InvitePlan.BASIC}/>
+          <HandleInvitePlanButtons text="Premium" formApi={form} value={InvitePlan.PREMIUM}/>
         </div>
       );
     case 2:
@@ -73,7 +64,14 @@ export const renderFormStep = (
             </form.Field>
           </div>
           <div>
-            <form.Field name="title">
+            <form.Field
+              name="title"
+              validators={{
+                onChangeAsyncDebounceMs: 500,
+                onChangeAsync: ({ value }) =>
+                  value.length < 5 && "Titulo deve conter no minimo 5 caracteres",
+              }}
+            >
               {(field) => (
                 <>
                   <Label className="text-lg">Titulo</Label>
@@ -89,7 +87,14 @@ export const renderFormStep = (
             </form.Field>
           </div>
           <div>
-            <form.Field name="sub_title">
+            <form.Field
+              name="sub_title"
+              validators={{
+                onChangeAsyncDebounceMs: 500,
+                onChangeAsync: ({ value }) =>
+                  value.length < 5 && "Sub Titulo deve conter no minimo 5 caracteres",
+              }}
+            >
               {(field) => (
                 <>
                   <Label className="text-lg">Sub titulo</Label>
@@ -105,7 +110,14 @@ export const renderFormStep = (
             </form.Field>
           </div>
           <div>
-            <form.Field name="date">
+            <form.Field
+              name="date"
+              validators={{
+                onChangeAsyncDebounceMs: 500,
+                onChangeAsync: ({ value }) =>
+                  value.toISOString().length <= 0 && "Data campo obrigatorio",
+              }}
+            >
               {(field) => (
                 <>
                   <Label className="text-lg">Data</Label>
@@ -123,7 +135,14 @@ export const renderFormStep = (
             </form.Field>
           </div>
           <div>
-            <form.Field name="url_music">
+            <form.Field
+              name="url_music"
+              validators={{
+                onChangeAsyncDebounceMs: 500,
+                onChangeAsync: ({ value }) =>
+                  !value.match(/^https:\/\//) && "Titulo deve conter no minimo 5 caracteres",
+              }}
+            >
               {(field) => (
                 <>
                   <Label className="text-lg">Url Musica</Label>
@@ -144,20 +163,29 @@ export const renderFormStep = (
       return (
         <div className="space-y-6 h-96 overflow-auto">
           <div>
-            <form.Field name="message">
+            <form.Field
+              name="message"
+              validators={{
+                onChangeAsyncDebounceMs: 500,
+                onChangeAsync: ({ value }) =>
+                  value.length > 307 && "Titulo deve conter no minimo 5 caracteres",
+              }}
+            >
               {(field) => (
                 <>
                   <Label htmlFor="message" className="text-lg">
-                    Descrição detalhada
+                    Sua mensagem
                   </Label>
                   <Textarea
                     id="message"
                     name="message"
+                    maxLength={307}
                     placeholder="Digite sua descrição aqui"
                     className="mt-2 text-lg w-full"
                     rows={6}
                     onChange={(e) => field.handleChange(e.target.value)}
                   />
+                  <small>{field.state.value.length} / 307</small>
                   <FieldInfo field={field} />
                 </>
               )}
