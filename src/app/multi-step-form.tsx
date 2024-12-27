@@ -72,7 +72,7 @@ export default function MultiStepForm() {
     formdata.append('invite_type', value.invite_type)
     formdata.append('invite_plan', value.invite_plan)
 
-     const rs = await fetch('/', {
+     const rs = await fetch('http://localhost:3000/checkout', {
         headers: { "Content-type": "multipart/form-data" },
         method: 'POST',
         body: formdata
