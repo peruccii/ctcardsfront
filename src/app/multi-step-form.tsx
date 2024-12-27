@@ -13,11 +13,13 @@ import { renderCard } from "@/components/RenderCard";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { InviteType } from "./enums/invite_type";
 import { InvitePlan } from "./enums/invite_plan";
+import { ResponseCheckout } from "@/interfaces/response_checkout";
+import { makeInvite } from "./factory/make-invite";
 
 export default function MultiStepForm() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const { replace } = useRouter();
+  const { replace, push } = useRouter();
   const params = new URLSearchParams(searchParams);
 
   const [currentStepContent, setCurrentStepContent] = useState(
@@ -49,36 +51,19 @@ export default function MultiStepForm() {
 
 
   const form = useForm<FormValues>({
-    defaultValues: {
-      title: "",
-      sub_title: "",
-      message: "",
-      email: "",
-      date: new Date(),
-      url_music: null,
-      invite_type:  InviteType as unknown as InviteType,
-      invite_plan: InvitePlan as unknown as InvitePlan
-    },
     onSubmit: async ({ value }) => {
 
-    const formdata = new FormData();
+    const formdata = makeInvite(value)
 
-    formdata.append('title', value.title)
-    formdata.append('sub_title', value.sub_title)
-    formdata.append('message', value.message)
-    formdata.append('email', value.email)
-    formdata.append('date', value.date.toISOString())
-    if ( value.url_music && value.url_music.length ) formdata.append('url_music', value.url_music)
-    formdata.append('invite_type', value.invite_type)
-    formdata.append('invite_plan', value.invite_plan)
-
-     const rs = await fetch('http://localhost:3000/checkout', {
+     const data = await fetch('http://localhost:3000/checkout', {
         headers: { "Content-type": "multipart/form-data" },
         method: 'POST',
         body: formdata
-     })
-     const data = await rs.json()
-     console.log(data)
+     }
+    )
+     const response: ResponseCheckout = await data.json()
+     if (data.status === 200) push(response.urlStripe)
+
     },
   });
 
