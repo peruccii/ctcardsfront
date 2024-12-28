@@ -21,14 +21,16 @@ export const renderCard = (type: string) => {
               background: #e0e1dc;
               transform-style: preserve-3d;
               transform: translate(0, 0) perspective(2000px);
-              box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5),
+              box-shadow:
+                inset 300px 0 50px rgba(0, 0, 0, 0.5),
                 20px 0 60px rgba(0, 0, 0, 0.5);
               transition: 1s;
             }
 
             .card:hover {
               transform: rotate(15deg) scale(1.2);
-              box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5),
+              box-shadow:
+                inset 20px 0 50px rgba(0, 0, 0, 0.5),
                 0 10px 100px rgba(0, 0, 0, 0.5);
             }
 
@@ -165,14 +167,16 @@ export const renderCard = (type: string) => {
               background: #e0e1dc;
               transform-style: preserve-3d;
               transform: translate(0, 0) perspective(2000px);
-              box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5),
+              box-shadow:
+                inset 300px 0 50px rgba(0, 0, 0, 0.5),
                 20px 0 60px rgba(0, 0, 0, 0.5);
               transition: 1s;
             }
 
             .card:hover {
               transform: rotate(15deg) scale(1.2);
-              box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5),
+              box-shadow:
+                inset 20px 0 50px rgba(0, 0, 0, 0.5),
                 0 10px 100px rgba(0, 0, 0, 0.5);
             }
 
