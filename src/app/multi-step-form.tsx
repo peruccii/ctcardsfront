@@ -13,7 +13,7 @@ import { renderCard } from '@/components/RenderCard';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ResponseCheckout } from '@/interfaces/response_checkout';
 import { makeInvite } from './factory/make-invite';
-import { CreateInvite } from './api/create-invite';
+import { InviteUseCases } from './api/invite-use-cases';
 
 export default function MultiStepForm() {
   const searchParams = useSearchParams();
@@ -51,7 +51,7 @@ export default function MultiStepForm() {
     onSubmit: async ({ value }) => {
       const formdata = makeInvite(value);
 
-      const invite = new CreateInvite();
+      const invite = new InviteUseCases();
 
       const data = await invite.create(formdata);
 
