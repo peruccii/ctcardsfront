@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import MultiStepForm from "../multi-step-form";
-import AnimatedGradientText from "@/components/ui/animated-gradient-text";
-import { cn } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
-import { RainbowButton } from "@/components/ui/rainbow-button";
-import Image from "next/image";
+import MultiStepForm from '../multi-step-form';
+import AnimatedGradientText from '@/components/ui/animated-gradient-text';
+import { cn } from '@/lib/utils';
+import { ChevronRight } from 'lucide-react';
+import { RainbowButton } from '@/components/ui/rainbow-button';
+import Image from 'next/image';
 
-const navigation = [{ name: "Product", href: "#" }];
+const navigation = [{ name: 'Product', href: '#' }];
 
 export default function HeroSection() {
   return (
@@ -60,14 +60,14 @@ export default function HeroSection() {
           <div
             style={{
               clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
             }}
             className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#e6a699] to-[#ff9a86] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
           />
         </div>
         <div className="mx-auto max-w-6xl py-32 sm:py-48 lg:py-24">
           <AnimatedGradientText>
-            🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />{" "}
+            🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />{' '}
             <span
               className={cn(
                 `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
@@ -100,7 +100,7 @@ export default function HeroSection() {
           <div
             style={{
               clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
             }}
             className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
           />

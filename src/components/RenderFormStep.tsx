@@ -1,33 +1,52 @@
-import {  ReactFormExtendedApi } from "@tanstack/react-form";
-import { Input } from "./ui/input";
-import HandleInviteTypeButtons from "./ui/handle-invite-type-buttons";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
-import { FormValues } from "@/interfaces/form_values";
-import { FieldInfo } from "./Fieldinfo";
-import { InviteType } from "@/app/enums/invite_type";
-import HandleInvitePlanButtons from "./ui/handle-invite-plan-buttons";
-import { InvitePlan } from "@/app/enums/invite_plan";
+import { ReactFormExtendedApi } from '@tanstack/react-form';
+import { Input } from './ui/input';
+import HandleInviteTypeButtons from './ui/handle-invite-type-buttons';
+import { Label } from './ui/label';
+import { Textarea } from './ui/textarea';
+import { FormValues } from '@/interfaces/form_values';
+import { FieldInfo } from './Fieldinfo';
+import { InviteType } from '@/app/enums/invite_type';
+import HandleInvitePlanButtons from './ui/handle-invite-plan-buttons';
+import { InvitePlan } from '@/app/enums/invite_plan';
 
 export const renderFormStep = (
   step: number,
   form: ReactFormExtendedApi<FormValues>,
 ) => {
-
   switch (step) {
     case 0:
       return (
         <div className="grid grid-cols-3 h-96 md:grid-cols-1 sm:grid-cols-1 gap-6 overflow-auto">
-          <HandleInviteTypeButtons text="Casais" formApi={form} value={InviteType.LOVE} />
-          <HandleInviteTypeButtons text="Melhor amigo(a)" formApi={form}  value={InviteType.BESTFRIENDS} />
-          <HandleInviteTypeButtons text="Aniversario" formApi={form}  value={InviteType.BIRTHDAY}/>
+          <HandleInviteTypeButtons
+            text="Casais"
+            formApi={form}
+            value={InviteType.LOVE}
+          />
+          <HandleInviteTypeButtons
+            text="Melhor amigo(a)"
+            formApi={form}
+            value={InviteType.BESTFRIENDS}
+          />
+          <HandleInviteTypeButtons
+            text="Aniversario"
+            formApi={form}
+            value={InviteType.BIRTHDAY}
+          />
         </div>
       );
     case 1:
       return (
         <div className="grid grid-cols-2 h-96 md:grid-cols-2 gap-2 overflow-auto">
-          <HandleInvitePlanButtons text="Basico" formApi={form} value={InvitePlan.BASIC}/>
-          <HandleInvitePlanButtons text="Premium" formApi={form} value={InvitePlan.PREMIUM}/>
+          <HandleInvitePlanButtons
+            text="Basico"
+            formApi={form}
+            value={InvitePlan.BASIC}
+          />
+          <HandleInvitePlanButtons
+            text="Premium"
+            formApi={form}
+            value={InvitePlan.PREMIUM}
+          />
         </div>
       );
     case 2:
@@ -39,7 +58,7 @@ export const renderFormStep = (
               validators={{
                 onChangeAsyncDebounceMs: 500,
                 onChangeAsync: ({ value }) =>
-                  !value.match(/^[^@]+@[^@]+\.[^@]+$/) && "Invalid email",
+                  !value.match(/^[^@]+@[^@]+\.[^@]+$/) && 'Invalid email',
               }}
             >
               {(field) => (
@@ -48,7 +67,7 @@ export const renderFormStep = (
                     htmlFor="email"
                     className="text-lg flex items-center gap-2"
                   >
-                    E-mail{" "}
+                    E-mail{' '}
                     <p className="text-xs">( para receber seu QRcode )</p>
                   </Label>
                   <Input
@@ -69,7 +88,8 @@ export const renderFormStep = (
               validators={{
                 onChangeAsyncDebounceMs: 500,
                 onChangeAsync: ({ value }) =>
-                  value.length < 5 && "Titulo deve conter no minimo 5 caracteres",
+                  value.length < 5 &&
+                  'Titulo deve conter no minimo 5 caracteres',
               }}
             >
               {(field) => (
@@ -92,7 +112,8 @@ export const renderFormStep = (
               validators={{
                 onChangeAsyncDebounceMs: 500,
                 onChangeAsync: ({ value }) =>
-                  value.length < 5 && "Sub Titulo deve conter no minimo 5 caracteres",
+                  value.length < 5 &&
+                  'Sub Titulo deve conter no minimo 5 caracteres',
               }}
             >
               {(field) => (
@@ -115,7 +136,7 @@ export const renderFormStep = (
               validators={{
                 onChangeAsyncDebounceMs: 500,
                 onChangeAsync: ({ value }) =>
-                  value.toISOString().length <= 0 && "Data campo obrigatorio",
+                  value.toISOString().length <= 0 && 'Data campo obrigatorio',
               }}
             >
               {(field) => (
@@ -140,7 +161,9 @@ export const renderFormStep = (
               validators={{
                 onChangeAsyncDebounceMs: 500,
                 onChangeAsync: ({ value }) =>
-                  !value.match(/^https:\/\//) && "Titulo deve conter no minimo 5 caracteres",
+                  value &&
+                  !value.match(/^https:\/\//) &&
+                  'Titulo deve conter no minimo 5 caracteres',
               }}
             >
               {(field) => (
@@ -168,7 +191,8 @@ export const renderFormStep = (
               validators={{
                 onChangeAsyncDebounceMs: 500,
                 onChangeAsync: ({ value }) =>
-                  value.length > 307 && "Titulo deve conter no minimo 5 caracteres",
+                  value.length > 307 &&
+                  'Titulo deve conter no minimo 5 caracteres',
               }}
             >
               {(field) => (

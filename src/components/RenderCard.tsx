@@ -1,14 +1,14 @@
 export const renderCard = (type: string) => {
   switch (type) {
-    case "LOVE":
+    case 'LOVE':
       return (
         <div className="w-full md:w-1/2 bg-[#fffff] border-2 border-b-neutral-800 h-[800px] rounded-lg flex items-center justify-center relative overflow-hidden">
           <style jsx>{`
-            @import url("https://fonts.googleapis.com/css?family=Indie+Flower");
-            @import url("https://fonts.googleapis.com/css?family=Amatic+SC");
+            @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+            @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
             .card-container {
-              font-family: "Indie Flower", cursive;
+              font-family: 'Indie Flower', cursive;
               perspective: 2000px;
               width: 300px;
               height: 400px;
@@ -21,21 +21,19 @@ export const renderCard = (type: string) => {
               background: #e0e1dc;
               transform-style: preserve-3d;
               transform: translate(0, 0) perspective(2000px);
-              box-shadow:
-                inset 300px 0 50px rgba(0, 0, 0, 0.5),
+              box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5),
                 20px 0 60px rgba(0, 0, 0, 0.5);
               transition: 1s;
             }
 
             .card:hover {
               transform: rotate(15deg) scale(1.2);
-              box-shadow:
-                inset 20px 0 50px rgba(0, 0, 0, 0.5),
+              box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5),
                 0 10px 100px rgba(0, 0, 0, 0.5);
             }
 
             .card:before {
-              content: "";
+              content: '';
               position: absolute;
               top: -5px;
               left: 0;
@@ -47,7 +45,7 @@ export const renderCard = (type: string) => {
             }
 
             .card:after {
-              content: "";
+              content: '';
               position: absolute;
               top: 0;
               right: -5px;
@@ -108,7 +106,7 @@ export const renderCard = (type: string) => {
 
             .card .details h4 {
               text-align: center;
-              font-family: "Amatic SC", cursive;
+              font-family: 'Amatic SC', cursive;
               font-size: 26px;
               line-height: 1.2; /* Ajuste o espaçamento entre as linhas */
             }
@@ -146,15 +144,15 @@ export const renderCard = (type: string) => {
           </div>
         </div>
       );
-    case "BESTFRIENDS":
+    case 'BESTFRIENDS':
       return (
         <div className="w-full md:w-1/2 bg-[#fffff] border-2 border-b-neutral-800 h-[800px] rounded-lg flex items-center justify-center relative overflow-hidden">
           <style jsx>{`
-            @import url("https://fonts.googleapis.com/css?family=Indie+Flower");
-            @import url("https://fonts.googleapis.com/css?family=Amatic+SC");
+            @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+            @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
             .card-container {
-              font-family: "Indie Flower", cursive;
+              font-family: 'Indie Flower', cursive;
               perspective: 2000px;
               width: 300px;
               height: 400px;
@@ -167,21 +165,19 @@ export const renderCard = (type: string) => {
               background: #e0e1dc;
               transform-style: preserve-3d;
               transform: translate(0, 0) perspective(2000px);
-              box-shadow:
-                inset 300px 0 50px rgba(0, 0, 0, 0.5),
+              box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5),
                 20px 0 60px rgba(0, 0, 0, 0.5);
               transition: 1s;
             }
 
             .card:hover {
               transform: rotate(15deg) scale(1.2);
-              box-shadow:
-                inset 20px 0 50px rgba(0, 0, 0, 0.5),
+              box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5),
                 0 10px 100px rgba(0, 0, 0, 0.5);
             }
 
             .card:before {
-              content: "";
+              content: '';
               position: absolute;
               top: -5px;
               left: 0;
@@ -193,7 +189,7 @@ export const renderCard = (type: string) => {
             }
 
             .card:after {
-              content: "";
+              content: '';
               position: absolute;
               top: 0;
               right: -5px;
@@ -254,7 +250,7 @@ export const renderCard = (type: string) => {
 
             .card .details h4 {
               text-align: center;
-              font-family: "Amatic SC", cursive;
+              font-family: 'Amatic SC', cursive;
               font-size: 26px;
               line-height: 1.2; /* Ajuste o espaçamento entre as linhas */
             }
@@ -293,6 +289,6 @@ export const renderCard = (type: string) => {
         </div>
       );
     default:
-      return "";
+      return '';
   }
 };

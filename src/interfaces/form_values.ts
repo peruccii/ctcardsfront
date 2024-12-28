@@ -1,5 +1,5 @@
-import { InvitePlan } from "@/app/enums/invite_plan";
-import { InviteType } from "@/app/enums/invite_type";
+import { InvitePlan } from '@/app/enums/invite_plan';
+import { InviteType } from '@/app/enums/invite_type';
 
 export interface FormValues {
   title: string;
@@ -8,6 +8,7 @@ export interface FormValues {
   email: string;
   url_music: string | null;
   date: Date;
-  invite_type: InviteType
-  invite_plan: InvitePlan
+  invite_type: InviteType;
+  invite_plan: InvitePlan;
+  images: string[];
 }

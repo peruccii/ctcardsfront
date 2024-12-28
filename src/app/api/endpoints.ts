@@ -1,0 +1,3 @@
+enum endpoints {
+  CHECKOUT = 'checkout',
+}

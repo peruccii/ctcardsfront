@@ -66,7 +66,6 @@ export default function MultiStepForm() {
       <Card className="w-full max-w-[1400px] shadow-lg overflow-hidden border-2 border-orange-100 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 backdrop-saturate-50 backdrop-contrast-125">
         <BorderBeam borderWidth={3} />
         <div className="flex flex-col md:flex-row m-6 rounded-lg bg-white">
-          {/* lado esquerdo */}
           <div className="w-full md:w-1/2 p-12">
             <ProgressBar
               steps={steps}
@@ -107,19 +106,9 @@ export default function MultiStepForm() {
                     </button>
                   )}
                 />
-                {/* <button
-                  type="button"
-                  onClick={(e) => {
-                    handleNext(e);
-                  }}
-                  disabled={currentStep === steps.length - 1}
-                >
-                  Prosseguir
-                </button> */}
               </div>
             </form>
           </div>
-          {/* lado direito */}
           {renderCard(form.state.values.title)}
         </div>
       </Card>

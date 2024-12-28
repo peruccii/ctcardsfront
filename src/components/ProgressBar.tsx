@@ -1,5 +1,5 @@
-import { Check, Dot } from "lucide-react";
-import React from "react";
+import { Check, Dot } from 'lucide-react';
+import React from 'react';
 
 interface ProgressBarProps {
   steps: string[];
@@ -15,10 +15,10 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ steps, currentStep }) => {
             <div
               className={`w-8 h-8 rounded-full border-orange-500  border-2  flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
                 index < currentStep
-                  ? "bg-orange-600 text-white"
+                  ? 'bg-orange-600 text-white'
                   : index === currentStep
-                    ? "bg-transparent text-blue-800"
-                    : "text-gray-500"
+                  ? 'bg-transparent text-blue-800'
+                  : 'text-gray-500'
               }`}
             >
               {index === currentStep ? (
@@ -31,7 +31,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ steps, currentStep }) => {
           {index < steps.length - 1 && (
             <div
               className={`flex-1 h-[3px] rounded-xl mx-2 transition-all duration-300 ${
-                index < currentStep ? "bg-orange-500" : "bg-gray-200"
+                index < currentStep ? 'bg-orange-500' : 'bg-gray-200'
               }`}
             />
           )}

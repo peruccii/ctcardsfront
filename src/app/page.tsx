@@ -1,5 +1,5 @@
-import Particles from "@/components/ui/particles";
-import HeroSection from "./page/hero";
+import Particles from '@/components/ui/particles';
+import HeroSection from './page/hero';
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
         vx={3}
         vy={3}
         staticity={20}
-        color={"#000000"}
+        color={'#000000'}
         refresh
       />
       <HeroSection />
