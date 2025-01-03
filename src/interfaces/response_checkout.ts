@@ -1,3 +1,3 @@
 export interface ResponseCheckout {
-  urlStripe: string;
+  url: string;
 }

@@ -9,7 +9,11 @@ export interface ResponseInvite {
   url_music: string;
   date: Date;
   id: string;
+  card_color: string;
+  bg_color: string;
+  names: string;
   imageUrls: string[];
   invite_type: InviteType;
+  payment_method: string;
   invite_plan: InvitePlan;
 }

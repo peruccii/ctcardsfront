@@ -8,7 +8,12 @@ export interface FormValues {
   email: string;
   url_music: string;
   date: Date;
-  imageUrls: string[];
+  card_color: string;
+  bg_color: string;
+  names: string;
+  imageUrls: File[];
   invite_type: InviteType;
+  payment_method: string;
+  createdAt: Date;
   invite_plan: InvitePlan;
 }
