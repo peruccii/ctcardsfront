@@ -6,11 +6,12 @@ import { ResponseInvite } from '@/interfaces/response_invite';
 export class InviteUseCases implements InviteRepositoy {
   //
   async create(formdata: FormData): Promise<Response> {
-    return await fetch(`${BASE_URL}/${endpoints.CHECKOUT}`, {
-      headers: { 'Content-type': 'multipart/form-data' },
+    const response = await fetch(`http://localhost:4000/checkout`, {
       method: 'POST',
       body: formdata,
     });
+    const data = await response.json();
+    return data;
   }
 
   async get(id: string): Promise<ResponseInvite> {
