@@ -1,3 +1,3 @@
 export interface ResponseCheckout {
-  url: string;
+  url_checkout: string;
 }

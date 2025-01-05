@@ -10,7 +10,6 @@ import { FormValues } from '@/interfaces/form_values';
 import { ReactFormExtendedApi } from '@tanstack/react-form';
 import Image from 'next/image';
 import { DropzoneOptions } from 'react-dropzone';
-import { useEffect } from 'react';
 
 interface FileUploadDropzoneProps {
   formApi: ReactFormExtendedApi<FormValues>;
@@ -53,9 +52,7 @@ const FileUploadDropzone = ({
   if (files && files.length > 0) {
     formApi.setFieldValue('image_urls', files);
   }
-  useEffect(() => {
-    console.log(files);
-  });
+
   const dropzone = {
     accept: {
       'image/*': ['.jpg', '.jpeg', '.png', '.gif'],

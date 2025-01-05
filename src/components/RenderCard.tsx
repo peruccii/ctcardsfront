@@ -3,6 +3,12 @@ import Carousel from './Carrousel';
 import { useMessage } from './MessageContext';
 import ReactPlayer from 'react-player';
 import { Pause, Play } from 'lucide-react';
+import { differenceInDays } from 'date-fns';
+
+function calculateDaysBetween(dateString: string): number {
+  const today = new Date();
+  return differenceInDays(today, dateString);
+}
 
 const RenderCard = (
   type: string,
@@ -16,6 +22,28 @@ const RenderCard = (
   function handlePlayMusic() {
     setPlay((prevPlay) => !prevPlay);
   }
+
+  let dynamicMessage = '';
+  const date = params.get('date');
+  if (date) {
+    switch (type) {
+      case 'LOVE':
+        const daysTogether = calculateDaysBetween(date);
+        dynamicMessage = `Juntos há ${daysTogether} dias`;
+        break;
+      case 'BESTFRIENDS':
+        const friendshipDays = calculateDaysBetween(date);
+        dynamicMessage = `Amizade de ${friendshipDays} dias`;
+        break;
+      case 'BIRTHDAY':
+        const daysAlive = calculateDaysBetween(date);
+        dynamicMessage = `Parabéns! 🎉 Você já viveu ${daysAlive} dias incríveis!`;
+        break;
+      default:
+        dynamicMessage = '';
+    }
+  }
+
   switch (type) {
     case 'LOVE':
       return (
@@ -203,16 +231,12 @@ const RenderCard = (
                 {/* Imagem */}
                 <Carousel images={files} />
                 {/* Data */}
-                <p className="text-center text-white">
-                  Data: {params.get('date')}
-                </p>
+                <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
                 <h4 className="color1">{data.title}</h4>
                 <h4 className="color2 margin">{data.sub_title}</h4>
                 {data.message}
-                <p className="text-right">Happy Birthday, papa!</p>
-                <p className="text-right">♥Sarah</p>
               </div>
             </div>
           </div>
@@ -362,20 +386,13 @@ const RenderCard = (
                 <p className="text-center text-1xl text-white">
                   {params.get('names') ?? 'Adicione os nomes aqui'}
                 </p>
-                {/* Texto */}
-                {/* Imagem */}
                 <Carousel images={files} />
-                {/* Data */}
-                <p className="text-center text-white">
-                  Data: {new Date().toLocaleDateString()}
-                </p>
+                <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
                 <h4 className="color1"> {data.title}</h4>
                 <h4 className="color2 margin"> {data.sub_title}</h4>
                 {data.message}
-                <p className="text-right">Happy Birthday, papa!</p>
-                <p className="text-right">♥ Eu te amo</p>
               </div>
             </div>
           </div>
@@ -526,16 +543,12 @@ const RenderCard = (
                   {params.get('names') ?? 'Adicione os nomes aqui'}
                 </p>
                 <Carousel images={files} />
-                <p className="text-center text-white">
-                  Data: {new Date().toLocaleDateString()}
-                </p>
+                <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
                 <h4 className="color1"> {data.title}</h4>
                 <h4 className="color2 margin"> {data.sub_title}</h4>
                 {data.message}
-                <p className="text-right">Happy Birthday, papa!</p>
-                <p className="text-right">♥ Eu te amo</p>
               </div>
             </div>
           </div>

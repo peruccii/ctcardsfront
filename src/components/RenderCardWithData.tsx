@@ -1,23 +1,55 @@
 import { ResponseInvite } from '@/interfaces/response_invite';
-// import ReactPlayer from 'react-player';
 import Carousel from './Carrousel';
-// import { useState } from 'react';
-// import { Pause, Play } from 'lucide-react';
+import { useState } from 'react';
+import { Pause, Play } from 'lucide-react';
 import CardTemplate from './CardTemplate';
-import {
-  useFetchImagesAsFiles,
-  useFetchImagesAsUrls,
-} from './useFetchImagesFromFirebase';
+import { useFetchImagesAsFiles } from './useFetchImagesFromFirebase';
+import ReactPlayer from 'react-player';
+import { differenceInDays, parseISO } from 'date-fns';
+interface RenderCardWithDataProps {
+  type: string;
+  data: ResponseInvite;
+}
 
-export const RenderCardWithData = (type: string, data: ResponseInvite) => {
+function calculateDaysBetween(dateString: Date): number {
+  const givenDate = parseISO(dateString as unknown as string);
+  const today = new Date();
+  return differenceInDays(today, givenDate);
+}
+
+const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
+  type,
+  data,
+}) => {
   const bgColor = data.bg_color;
   const card_color = data.card_color;
-  // const [play, setPlay] = useState(false);
-  const { imageUrls, isLoading } = useFetchImagesAsUrls(data.email);
+  const [play, setPlay] = useState(false);
+  const files = useFetchImagesAsFiles(data.email);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  function handlePlayMusic() {
+    setPlay((prevPlay) => !prevPlay);
   }
+
+  let dynamicMessage = '';
+  if (data.date) {
+    switch (type) {
+      case 'LOVE':
+        const daysTogether = calculateDaysBetween(data.date);
+        dynamicMessage = `Juntos há ${daysTogether} dias`;
+        break;
+      case 'BESTFRIENDS':
+        const friendshipDays = calculateDaysBetween(data.date);
+        dynamicMessage = `Amizade de ${friendshipDays} dias`;
+        break;
+      case 'BIRTHDAY':
+        const daysAlive = calculateDaysBetween(data.date);
+        dynamicMessage = `Parabéns! 🎉 Você já viveu ${daysAlive} dias incríveis!`;
+        break;
+      default:
+        dynamicMessage = '';
+    }
+  }
+
   switch (type) {
     case 'LOVE':
       return (
@@ -160,6 +192,36 @@ export const RenderCardWithData = (type: string, data: ResponseInvite) => {
               color: #c0392b;
             }
           `}</style>
+          <div className="absolute top-0 w-full text-center mt-4">
+            {data.url_music && (
+              <div className="flex justify-center items-center mt-4">
+                <button
+                  onClick={handlePlayMusic}
+                  style={{ backgroundColor: card_color }}
+                  className="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full  text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  aria-label={play ? 'Pause music' : 'Play music'}
+                >
+                  <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+                  <div className="relative transition-transform duration-300 ease-in-out group-active:scale-90">
+                    {play ? (
+                      <Pause className="h-6 w-6" />
+                    ) : (
+                      <Play className="h-6 w-6 pl-1" />
+                    )}
+                  </div>
+                  <span className="sr-only">{play ? 'Pause' : 'Play'}</span>
+                </button>
+                <ReactPlayer
+                  url={data.url_music}
+                  playing={play}
+                  onPause={() => setPlay(false)}
+                  onPlay={() => setPlay(true)}
+                  width={1}
+                  height={1}
+                />
+              </div>
+            )}
+          </div>
           <div className="card-container">
             <div className="card">
               <div
@@ -168,15 +230,13 @@ export const RenderCardWithData = (type: string, data: ResponseInvite) => {
               >
                 <div className="bark"></div>
                 <p className="text-center text-1xl text-white">{data.names}</p>
-                <Carousel images={imageUrls} />
-                <p className="text-center text-white">Data: </p>
+                <Carousel images={files} />
+                <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
                 <h4 className="color1"> {data.title}</h4>
                 <h4 className="color2 margin"> {data.sub_title}</h4>
                 {data.message}
-                <p className="text-right">Happy Birthday, papa!</p>
-                <p className="text-right">♥ Eu te amo</p>
               </div>
             </div>
           </div>
@@ -186,14 +246,12 @@ export const RenderCardWithData = (type: string, data: ResponseInvite) => {
       return (
         <CardTemplate bgColor={bgColor} cardColor={card_color}>
           <p className="text-center text-1xl text-white">{data.names}</p>
-          {/* <Carousel images={files} /> */}
+          <Carousel images={files} />
           <p className="text-center text-white">Data: </p>
           <div className="details">
             <h4 className="color1"> {data.title}</h4>
             <h4 className="color2 margin"> {data.sub_title}</h4>
             {data.message}
-            <p className="text-right">Amizade</p>
-            <p className="text-right">♥ Eu te amo</p>
           </div>
         </CardTemplate>
       );
@@ -201,15 +259,13 @@ export const RenderCardWithData = (type: string, data: ResponseInvite) => {
       return (
         <CardTemplate bgColor={bgColor} cardColor={card_color}>
           <p className="text-center text-1xl text-white">{data.names}</p>
-          {/* <Carousel images={files} /> */}
+          <Carousel images={files} />
           <p className="text-center text-white">Data: </p>
 
           <div className="details">
             <h4 className="color1"> {data.title}</h4>
             <h4 className="color2 margin"> {data.sub_title}</h4>
             {data.message}
-            <p className="text-right">Happy Birthday, papa!</p>
-            <p className="text-right">♥ Eu te amo</p>
           </div>
         </CardTemplate>
       );
@@ -217,3 +273,4 @@ export const RenderCardWithData = (type: string, data: ResponseInvite) => {
       return 'a';
   }
 };
+export default RenderCardWithData;
