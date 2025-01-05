@@ -12,7 +12,7 @@ export interface ResponseInvite {
   card_color: string;
   bg_color: string;
   names: string;
-  imageUrls: string[];
+  image_urls: string[];
   invite_type: InviteType;
   payment_method: string;
   invite_plan: InvitePlan;

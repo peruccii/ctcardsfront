@@ -1,9 +1,10 @@
-import React from "react";
-import { ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { FormValues } from "@/interfaces/form_values";
-import { ReactFormExtendedApi } from "@tanstack/react-form";
-import { InviteType } from "@/app/enums/invite_type";
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { FormValues } from '@/interfaces/form_values';
+import { ReactFormExtendedApi } from '@tanstack/react-form';
+import { InviteType } from '@/app/enums/invite_type';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 interface InteractiveHoverButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,7 +16,13 @@ interface InteractiveHoverButtonProps
 const HandleInviteTypeButtons = React.forwardRef<
   HTMLButtonElement,
   InteractiveHoverButtonProps
->(({ text = "Button", className, formApi, value, ...props }, ref) => {
+>(({ text = 'Button', className, formApi, value, ...props }, ref) => {
+  const searchParams = useSearchParams();
+
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const params = new URLSearchParams(searchParams);
+
   return (
     <formApi.Field name="invite_type">
       {(field) => (
@@ -23,9 +30,14 @@ const HandleInviteTypeButtons = React.forwardRef<
           <button
             name="invite_type"
             ref={ref}
-            onClick={() => field.handleChange(value)}
+            type="button"
+            onClick={() => {
+              field.handleChange(value);
+              params.set('type', value);
+              replace(`${pathname}?${params.toString()}`, { scroll: false });
+            }}
             className={cn(
-              "group relative shadow-md w-full h-24 cursor-pointer overflow-hidden rounded-xl border bg-background p-2 text-center font-semibold",
+              `group relative shadow-md w-full h-24 cursor-pointer overflow-hidden rounded-xl border  ${params.get('type') === value ? 'bg-primary text-primary-foreground' : 'bg-background'} p-2 text-center font-semibold`,
               className,
             )}
             {...props}
@@ -45,6 +57,6 @@ const HandleInviteTypeButtons = React.forwardRef<
   );
 });
 
-HandleInviteTypeButtons.displayName = "HandleInviteTypeButtons";
+HandleInviteTypeButtons.displayName = 'HandleInviteTypeButtons';
 
 export default HandleInviteTypeButtons;

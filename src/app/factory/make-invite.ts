@@ -26,8 +26,8 @@ function MakeInvite(
   formdata.append('invite_type', searchParams.get('type')!);
   formdata.append('invite_plan', searchParams.get('plan')!);
   if (value.url_music && value.url_music.length)
-    formdata.append('url_music', searchParams.get('url_music')!);
-  value.imageUrls.forEach((image) => formdata.append('imageUrls', image));
+    formdata.append('url_music', data.url_music ?? null);
+  value.image_urls.forEach((image) => formdata.append('image_urls', image));
 
   return formdata;
 }

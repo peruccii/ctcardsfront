@@ -11,7 +11,7 @@ export interface FormValues {
   card_color: string;
   bg_color: string;
   names: string;
-  imageUrls: File[];
+  image_urls: File[];
   invite_type: InviteType;
   payment_method: string;
   createdAt: Date;

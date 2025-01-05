@@ -5,9 +5,9 @@ import AnimatedGradientText from '@/components/ui/animated-gradient-text';
 import { cn } from '@/lib/utils';
 import { ChevronRight } from 'lucide-react';
 import { RainbowButton } from '@/components/ui/rainbow-button';
-import Image from 'next/image';
-
-const navigation = [{ name: 'Product', href: '#' }];
+import { MessageProvider } from '@/components/MessageContext';
+import { handleScrollToSection } from '@/components/scroll';
+import { Footer } from '@/components/Footer';
 
 export default function HeroSection() {
   return (
@@ -18,16 +18,7 @@ export default function HeroSection() {
           className="flex items-center justify-between p-6 lg:px-8"
         >
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <Image
-                alt=""
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=orange&shade=600"
-                className="h-8 w-auto"
-                width={20}
-                height={80}
-              />
-            </a>
+            <a href="#" className="-m-1.5 p-1.5"></a>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -37,21 +28,10 @@ export default function HeroSection() {
               <span className="sr-only">Open main menu</span>
             </button>
           </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-sm/6 font-semibold text-gray-900"
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
+          <div className="hidden lg:flex lg:gap-x-12"></div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end"></div>
         </nav>
       </header>
-
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
           aria-hidden="true"
@@ -86,13 +66,22 @@ export default function HeroSection() {
               surpresa
             </h1>
             <p className="mt-8 text-pretty mb-8 text-lg font-medium text-gray-500 sm:text-xl/8">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.
+              Surpreenda seus familiares e amigos com cartões animados em 3D,{' '}
+              {''}
+              personalizados para transformar momentos especiais em memórias
+              inesquecíveis!
             </p>
-            <RainbowButton>Quero criar meu cartao agora 👇</RainbowButton>;
+            <RainbowButton
+              className="btn-sroll"
+              onClick={handleScrollToSection}
+            >
+              Quero criar meu cartão agora 👇
+            </RainbowButton>
           </div>
         </div>
-        <MultiStepForm />
+        <MessageProvider>
+          <MultiStepForm />
+        </MessageProvider>
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
@@ -105,6 +94,9 @@ export default function HeroSection() {
             className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
           />
         </div>
+      </div>
+      <div className="w-full flex items-center justify-center">
+        <Footer />
       </div>
     </div>
   );
