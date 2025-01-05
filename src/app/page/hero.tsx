@@ -8,6 +8,7 @@ import { RainbowButton } from '@/components/ui/rainbow-button';
 import { MessageProvider } from '@/components/MessageContext';
 import { handleScrollToSection } from '@/components/scroll';
 import { Footer } from '@/components/Footer';
+import { Suspense } from 'react';
 
 export default function HeroSection() {
   return (
@@ -80,7 +81,9 @@ export default function HeroSection() {
           </div>
         </div>
         <MessageProvider>
-          <MultiStepForm />
+          <Suspense>
+            <MultiStepForm />
+          </Suspense>
         </MessageProvider>
         <div
           aria-hidden="true"
