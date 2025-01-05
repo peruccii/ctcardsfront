@@ -11,7 +11,6 @@ import ProgressBar from '@/components/ProgressBar';
 import { FormValues } from '@/interfaces/form_values';
 import RenderCard from '@/components/RenderCard';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-// import { ResponseCheckout } from '@/interfaces/response_checkout';
 import { InviteUseCases } from './api/invite-use-cases';
 import useUploadPhotos from '@/components/useUploadPhotos';
 import MakeInvite from './factory/make-invite';
@@ -53,20 +52,22 @@ export default function MultiStepForm() {
   const form = useForm<FormValues>({
     onSubmit: async ({ value }) => {
       const formdata = MakeInvite(value, searchParams, data);
-      console.log(value);
+
       const invite = new InviteUseCases();
 
       const response = await invite.create(formdata);
 
-      console.log('response', response);
-      // if (dataR.status === 201) push(response.url);
+      if (response) push(response.url_checkout);
     },
   });
   return (
-    <div className="min-h-screen flex items-center justify-center ">
+    <div
+      className="min-h-screen flex items-center justify-center "
+      id="target-section"
+    >
       <Card className="w-full max-w-[1700px] h-full  shadow-lg overflow-hidden border-2 border-orange-100 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 backdrop-saturate-50 backdrop-contrast-125">
         <BorderBeam borderWidth={3} />
-        <div className="flex flex-col md:flex-row m-6 rounded-lg bg-white">
+        <div className="flex flex-col md:flex-row sm:m-6 rounded-lg bg-white">
           <div className="w-full md:w-1/2 sm:p-12 p-2  items-center">
             <ProgressBar
               steps={steps}
