@@ -65,19 +65,20 @@ export default function MultiStepForm() {
       className="min-h-screen flex items-center justify-center "
       id="target-section"
     >
-      <Card className="w-full max-w-[1700px] h-full  shadow-lg overflow-hidden border-2 border-orange-100 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 backdrop-saturate-50 backdrop-contrast-125">
-        <BorderBeam borderWidth={3} />
-        <div className="flex flex-col md:flex-row sm:m-6 rounded-lg bg-white">
-          <div className="w-full md:w-1/2 sm:p-12 p-2  items-center">
-            <ProgressBar
-              steps={steps}
-              currentStep={Number(searchParams.get('step'))}
-            />
+      <Suspense fallback={<div>Carregando...</div>}>
+        <Card className="w-full max-w-[1700px] h-full  shadow-lg overflow-hidden border-2 border-orange-100 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 backdrop-saturate-50 backdrop-contrast-125">
+          <BorderBeam borderWidth={3} />
+          <div className="flex flex-col md:flex-row sm:m-6 rounded-lg bg-white">
+            <div className="w-full md:w-1/2 sm:p-12 p-2  items-center">
+              <ProgressBar
+                steps={steps}
+                currentStep={Number(searchParams.get('step'))}
+              />
 
-            <h2 className="sm:text-2xl text-sm  sm:justify-start justify-center flex  font-bold mt-8 mb-4">
-              {currentStepContent}
-            </h2>
-            <Suspense fallback={<div>Carregando...</div>}>
+              <h2 className="sm:text-2xl text-sm  sm:justify-start justify-center flex  font-bold mt-8 mb-4">
+                {currentStepContent}
+              </h2>
+
               <form
                 className="space-y-8 h-auto"
                 onSubmit={(e) => {
@@ -125,11 +126,11 @@ export default function MultiStepForm() {
                   <button type="submit">submit</button>
                 </div>
               </form>
-            </Suspense>
+            </div>
+            {RenderCard(params.get('type')!, params, files)}
           </div>
-          {RenderCard(params.get('type')!, params, files)}
-        </div>
-      </Card>
+        </Card>
+      </Suspense>
     </div>
   );
 }
