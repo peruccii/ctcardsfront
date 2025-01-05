@@ -1,7 +1,7 @@
 /** eslint-disable react/no-children-prop */
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import RenderFormStep from '@/components/RenderFormStep';
 import { useForm } from '@tanstack/react-form';
 import { steps, stepsTitleContent } from './steps/steps';
@@ -77,53 +77,55 @@ export default function MultiStepForm() {
             <h2 className="sm:text-2xl text-sm  sm:justify-start justify-center flex  font-bold mt-8 mb-4">
               {currentStepContent}
             </h2>
-            <form
-              className="space-y-8 h-auto"
-              onSubmit={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                void form.handleSubmit();
-              }}
-            >
-              {RenderFormStep(
-                Number(searchParams.get('step')),
-                form,
-                params,
-                pathname,
-                replace,
-                setFiles,
-                files,
-              )}
-              <div className="sm:items-end items-center sm:justify-end justify-center bottom-4 right-4 flex gap-4">
-                <button
-                  type="button"
-                  onClick={handlePrev}
-                  disabled={Number(searchParams.get('step')) === 0}
-                  className="py-2.5 px-6 text-sm rounded-full bg-gray-600 shadow-lg shadow-gray-500/50 text-white cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-gradient-to-l"
-                >
-                  Voltar
-                </button>
-                <form.Subscribe
-                  selector={(state) => [state.canSubmit, state.isSubmitting]}
-                  // eslint-disable-next-line react/no-children-prop
-                  children={([canSubmit]) => (
-                    <button
-                      className={`py-2.5 px-6 text-sm rounded-full font-semibold text-center cursor-pointer transition-all duration-500 text-white shadow-xs ${
-                        !canSubmit
-                          ? 'bg-gray-500 shadow-none cursor-not-allowed'
-                          : 'bg-gradient-to-r from-orange-600 via-orange-500 to-orange-400 shadow-lg shadow-orange-500/50 hover:bg-gradient-to-l'
-                      }`}
-                      type="button"
-                      onClick={handleNext}
-                      disabled={!canSubmit}
-                    >
-                      Prosseguir
-                    </button>
-                  )}
-                />
-                <button type="submit">submit</button>
-              </div>
-            </form>
+            <Suspense fallback={<div>Carregando...</div>}>
+              <form
+                className="space-y-8 h-auto"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  void form.handleSubmit();
+                }}
+              >
+                {RenderFormStep(
+                  Number(searchParams.get('step')),
+                  form,
+                  params,
+                  pathname,
+                  replace,
+                  setFiles,
+                  files,
+                )}
+                <div className="sm:items-end items-center sm:justify-end justify-center bottom-4 right-4 flex gap-4">
+                  <button
+                    type="button"
+                    onClick={handlePrev}
+                    disabled={Number(searchParams.get('step')) === 0}
+                    className="py-2.5 px-6 text-sm rounded-full bg-gray-600 shadow-lg shadow-gray-500/50 text-white cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-gradient-to-l"
+                  >
+                    Voltar
+                  </button>
+                  <form.Subscribe
+                    selector={(state) => [state.canSubmit, state.isSubmitting]}
+                    // eslint-disable-next-line react/no-children-prop
+                    children={([canSubmit]) => (
+                      <button
+                        className={`py-2.5 px-6 text-sm rounded-full font-semibold text-center cursor-pointer transition-all duration-500 text-white shadow-xs ${
+                          !canSubmit
+                            ? 'bg-gray-500 shadow-none cursor-not-allowed'
+                            : 'bg-gradient-to-r from-orange-600 via-orange-500 to-orange-400 shadow-lg shadow-orange-500/50 hover:bg-gradient-to-l'
+                        }`}
+                        type="button"
+                        onClick={handleNext}
+                        disabled={!canSubmit}
+                      >
+                        Prosseguir
+                      </button>
+                    )}
+                  />
+                  <button type="submit">submit</button>
+                </div>
+              </form>
+            </Suspense>
           </div>
           {RenderCard(params.get('type')!, params, files)}
         </div>
