@@ -1,7 +1,7 @@
 /** eslint-disable react/no-children-prop */
 'use client';
 
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import RenderFormStep from '@/components/RenderFormStep';
 import { useForm } from '@tanstack/react-form';
 import { steps, stepsTitleContent } from './steps/steps';
