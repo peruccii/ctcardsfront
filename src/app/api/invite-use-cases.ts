@@ -1,11 +1,9 @@
 import { InviteRepositoy } from '../invite-repository';
-import { BASE_URL } from './base-urls';
-import { endpoints } from './endpoints';
 import { ResponseInvite } from '@/interfaces/response_invite';
 
 export class InviteUseCases implements InviteRepositoy {
   //
-  async create(formdata: FormData): Promise<Response> {
+  async create(formdata: FormData) {
     const response = await fetch(`http://localhost:4000/checkout`, {
       method: 'POST',
       body: formdata,
@@ -14,10 +12,11 @@ export class InviteUseCases implements InviteRepositoy {
     return data;
   }
 
-  async get(id: string): Promise<ResponseInvite> {
-    const response = await fetch(`${BASE_URL}/${endpoints.GET_INVITE}/${id}`, {
+  async get(id: string) {
+    const response = await fetch(`http://localhost:4000/get/invite/${id}`, {
       method: 'GET',
     });
+
     const data: ResponseInvite = await response.json();
     return data;
   }
