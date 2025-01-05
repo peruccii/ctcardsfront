@@ -61,11 +61,11 @@ export default function MultiStepForm() {
     },
   });
   return (
-    <div
-      className="min-h-screen flex items-center justify-center "
-      id="target-section"
-    >
-      <Suspense fallback={<div>Carregando...</div>}>
+    <Suspense fallback={<div>Carregando...</div>}>
+      <div
+        className="min-h-screen flex items-center justify-center "
+        id="target-section"
+      >
         <Card className="w-full max-w-[1700px] h-full  shadow-lg overflow-hidden border-2 border-orange-100 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 backdrop-saturate-50 backdrop-contrast-125">
           <BorderBeam borderWidth={3} />
           <div className="flex flex-col md:flex-row sm:m-6 rounded-lg bg-white">
@@ -130,7 +130,7 @@ export default function MultiStepForm() {
             {RenderCard(params.get('type')!, params, files)}
           </div>
         </Card>
-      </Suspense>
-    </div>
+      </div>
+    </Suspense>
   );
 }
