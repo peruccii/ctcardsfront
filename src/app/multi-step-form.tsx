@@ -114,15 +114,18 @@ export default function MultiStepForm() {
                           ? 'bg-gray-500 shadow-none cursor-not-allowed'
                           : 'bg-gradient-to-r from-orange-600 via-orange-500 to-orange-400 shadow-lg shadow-orange-500/50 hover:bg-gradient-to-l'
                       }`}
-                      type="button"
+                      type={
+                        searchParams.get('step') === '4' ? 'submit' : 'button'
+                      }
                       onClick={handleNext}
                       disabled={!canSubmit}
                     >
-                      Prosseguir
+                      {searchParams.get('step') === '4'
+                        ? 'Finalizar'
+                        : 'Prosseguir'}
                     </button>
                   )}
                 />
-                <button type="submit">submit</button>
               </div>
             </form>
           </div>
