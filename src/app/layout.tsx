@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import logo from '../public/cute_cards_icon.png';
 import { Toaster } from 'sonner';
 
 const geistSans = Geist({
@@ -16,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Cute Cards',
-  icons: { icon: logo.src },
+  icons: { icon: '/cute_cards_icon.png' },
 };
 
 export default function RootLayout({

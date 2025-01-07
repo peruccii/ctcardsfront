@@ -7,7 +7,6 @@ import { ChevronRight } from 'lucide-react';
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { MessageProvider } from '@/components/MessageContext';
 import { handleScrollToSection } from '@/components/scroll';
-import { Footer } from '@/components/Footer';
 import { Suspense } from 'react';
 
 export default function HeroSection() {
@@ -97,9 +96,6 @@ export default function HeroSection() {
             className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
           />
         </div>
-      </div>
-      <div className="w-full flex items-center justify-center">
-        <Footer />
       </div>
     </div>
   );

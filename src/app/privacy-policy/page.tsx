@@ -26,13 +26,13 @@ export default function PrivacyPolicy() {
               <ul className="list-disc pl-5 mt-2 space-y-1">
                 <li>
                   Informações de Cadastro: Nome, data de início do
-                  relacionamento, mensagem personalizada, fotos do casal e
-                  endereço de email cadastrado.
+                  relacionamento, mensagem personalizada, fotos e endereço de
+                  email cadastrado.
                 </li>
                 <li>
-                  Informações de Pagamento: Endereço de email cadastrado no
-                  Stripe para processamento do pagamento e envio do link da
-                  página personalizada.
+                  Informações de Pagamento: Endereço de email cadastrado no site
+                  para processamento do pagamento ( Mercado Pago PIX ) e envio
+                  do link da página personalizada.
                 </li>
               </ul>
             </Section>
@@ -45,8 +45,8 @@ export default function PrivacyPolicy() {
                   via email.
                 </li>
                 <li>
-                  Personalizar e criar a página do casal com as informações
-                  fornecidas.
+                  Personalizar e criar a página do casal / aniversariante /
+                  melhores amigo(a)s com as informações fornecidas.
                 </li>
                 <li>Melhorar nossos serviços e suporte ao cliente.</li>
               </ul>
@@ -54,8 +54,8 @@ export default function PrivacyPolicy() {
 
             <Section title="4. Compartilhamento de Informações">
               Não compartilhamos suas informações pessoais com terceiros, exceto
-              conforme necessário para processar pagamentos (Stripe) e conforme
-              exigido por lei.
+              conforme necessário para processar pagamentos (Mercado Pago PIX) e
+              conforme exigido por lei.
             </Section>
 
             <Section title="5. Segurança">

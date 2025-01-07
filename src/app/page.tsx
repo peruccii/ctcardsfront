@@ -1,9 +1,11 @@
 import Particles from '@/components/ui/particles';
 import HeroSection from './page/hero';
+import HowItWorks from '@/components/HowItWorks';
+import { Footer } from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="bg-orange-50">
+    <main className="">
       <Particles
         className="absolute inset-0"
         quantity={600}
@@ -15,6 +17,10 @@ export default function Home() {
         refresh
       />
       <HeroSection />
+      <HowItWorks />
+      <div className="w-full flex items-center justify-center">
+        <Footer />
+      </div>
     </main>
   );
 }

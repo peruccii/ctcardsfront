@@ -27,7 +27,11 @@ function MakeInvite(
   formdata.append('invite_plan', searchParams.get('plan')!);
   if (value.url_music && value.url_music.length)
     formdata.append('url_music', data.url_music ?? null);
-  value.image_urls.forEach((image) => formdata.append('image_urls', image));
+  if (value.image_urls && value.image_urls.length) {
+    value.image_urls.forEach((image) => formdata.append('image_urls', image));
+  } else {
+    formdata.append('image_urls', '');
+  }
 
   return formdata;
 }

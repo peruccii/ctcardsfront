@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { CreditCard, QrCode } from 'lucide-react';
+import { QrCode } from 'lucide-react';
 
 export default function PaymentMethod() {
   const [paymentMethod, setPaymentMethod] = useState<'pix' | 'card'>('card');
@@ -36,7 +36,7 @@ export default function PaymentMethod() {
             </CardContent>
           </Card>
         </Label>
-        <Label htmlFor="card" className="cursor-pointer">
+        {/* <Label htmlFor="card" className="cursor-pointer">
           <Card
             className={`h-40 w-full ${paymentMethod === 'card' ? 'border-purple-500 border-2 shadow-lg' : 'border-dashed border-2'}`}
           >
@@ -48,7 +48,7 @@ export default function PaymentMethod() {
               <RadioGroupItem value="card" id="card" className="sr-only" />
             </CardContent>
           </Card>
-        </Label>
+        </Label> */}
       </RadioGroup>
     </div>
   );
