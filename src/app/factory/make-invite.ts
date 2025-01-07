@@ -14,7 +14,7 @@ function MakeInvite(
     getColorTypeInvite(searchParams.get('type')!);
 
   formdata.append('title', data.title ?? '');
-  formdata.append('sub_title', data.title ?? '');
+  formdata.append('sub_title', data.sub_title ?? '');
   formdata.append('payment_method', localStorage.getItem('payment_method')!);
   formdata.append('message', data.message ?? '');
   formdata.append('email', data.email ?? '');

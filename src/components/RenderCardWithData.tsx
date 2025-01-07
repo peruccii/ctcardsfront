@@ -23,7 +23,9 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
   const bgColor = data.bg_color;
   const card_color = data.card_color;
   const [play, setPlay] = useState(false);
-  const files = useFetchImagesAsFiles(data.email);
+  const e = data.email.slice(0, 3);
+  const slug = `slug-${e}-${data.invite_type}-${data.invite_plan}-${data.names}`;
+  const files = useFetchImagesAsFiles(slug);
 
   function handlePlayMusic() {
     setPlay((prevPlay) => !prevPlay);
