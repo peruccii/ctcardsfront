@@ -5,7 +5,7 @@ import { ResponseInvite } from '@/interfaces/response_invite';
 export class InviteUseCases implements InviteRepositoy {
   //
   async create(formdata: FormData): Promise<ResponseCheckout> {
-    const response = await fetch(`http://localhost:4000/checkout`, {
+    const response = await fetch(`${process.env.API_URL}/checkout`, {
       method: 'POST',
       body: formdata,
     });
@@ -14,7 +14,7 @@ export class InviteUseCases implements InviteRepositoy {
   }
 
   async get(id: string): Promise<ResponseInvite> {
-    const response = await fetch(`http://localhost:4000/get/invite/${id}`, {
+    const response = await fetch(`${process.env.API_URL}/get/invite/${id}`, {
       method: 'GET',
     });
 
