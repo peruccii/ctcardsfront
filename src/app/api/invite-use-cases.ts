@@ -1,11 +1,11 @@
 import { ResponseCheckout } from '@/interfaces/response_checkout';
 import { InviteRepositoy } from '../invite-repository';
 import { ResponseInvite } from '@/interfaces/response_invite';
-
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export class InviteUseCases implements InviteRepositoy {
   //
   async create(formdata: FormData): Promise<ResponseCheckout> {
-    const response = await fetch(`${process.env.API_URL}/checkout`, {
+    const response = await fetch(`${BASE_URL}/checkout`, {
       method: 'POST',
       body: formdata,
     });
@@ -14,7 +14,7 @@ export class InviteUseCases implements InviteRepositoy {
   }
 
   async get(id: string): Promise<ResponseInvite> {
-    const response = await fetch(`${process.env.API_URL}/get/invite/${id}`, {
+    const response = await fetch(`${BASE_URL}/get/invite/${id}`, {
       method: 'GET',
     });
 
