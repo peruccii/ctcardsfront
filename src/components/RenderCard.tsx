@@ -7,7 +7,7 @@ import { differenceInDays } from 'date-fns';
 
 function calculateDaysBetween(dateString: string): number {
   const today = new Date();
-  return differenceInDays(today, dateString);
+  return differenceInDays(dateString, today);
 }
 
 const RenderCard = (

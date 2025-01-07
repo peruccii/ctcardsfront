@@ -13,7 +13,7 @@ interface RenderCardWithDataProps {
 function calculateDaysBetween(dateString: Date): number {
   const givenDate = parseISO(dateString as unknown as string);
   const today = new Date();
-  return differenceInDays(today, givenDate);
+  return differenceInDays(givenDate, today);
 }
 
 const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
