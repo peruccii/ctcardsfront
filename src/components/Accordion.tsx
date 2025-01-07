@@ -14,7 +14,7 @@ export function AccordionPlan() {
         <AccordionContent className="flex-col gap-4">
           <div className="flex gap-2 items-center mb-2">
             <CircleCheck color="#3fff0a" />
-            <span>Podendo selecionar ate 3 fotos</span>
+            <span>Podendo selecionar até 3 fotos</span>
           </div>
           <div className="flex gap-2 items-center mb-2">
             <CircleCheck color="#3fff0a" />
@@ -22,7 +22,7 @@ export function AccordionPlan() {
           </div>
           <div className="flex gap-2 items-center mb-2">
             <CircleX color="#ff0a0a" />
-            <span>Sem direito a musica</span>
+            <span>Sem direito a música</span>
           </div>
         </AccordionContent>
       </AccordionItem>
@@ -31,7 +31,7 @@ export function AccordionPlan() {
         <AccordionContent>
           <div className="flex gap-2 items-center mb-2">
             <CircleCheck color="#3fff0a" />
-            <span>Podendo selecionar ate 7 fotos</span>
+            <span>Podendo selecionar até 7 fotos</span>
           </div>
           <div className="flex gap-2 items-center mb-2">
             <CircleCheck color="#3fff0a" />
@@ -39,7 +39,7 @@ export function AccordionPlan() {
           </div>
           <div className="flex gap-2 items-center mb-2">
             <CircleCheck color="#3fff0a" />
-            <span>Com direito a musica</span>
+            <span>Com direito a música</span>
           </div>
         </AccordionContent>
       </AccordionItem>

@@ -225,7 +225,7 @@ const RenderCard = (
                 style={{ backgroundColor: String(params.get('card_color')!) }}
               >
                 <div className="bark"></div>
-                <p className="text-center text-1xl text-white">
+                <p className="text-center text-2xl font-bold text-white">
                   {params.get('names') ?? 'Adicione os nomes aqui'}
                 </p>
                 {/* Imagem */}
@@ -234,9 +234,12 @@ const RenderCard = (
                 <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
-                <h4 className="color1">{data.title}</h4>
-                <h4 className="color2 margin">{data.sub_title}</h4>
-                {data.message}
+                <h4 className="color1"> {data.title ?? 'Título'}</h4>
+                <h4 className="color2 margin">
+                  {' '}
+                  {data.sub_title ?? 'Sub Título'}
+                </h4>
+                {data.message ?? 'Sua mensagem'}
               </div>
             </div>
           </div>
@@ -383,16 +386,19 @@ const RenderCard = (
                 style={{ backgroundColor: params.get('card_color')! }}
               >
                 <div className="bark"></div>
-                <p className="text-center text-1xl text-white">
+                <p className="text-center font-bold text-2xl">
                   {params.get('names') ?? 'Adicione os nomes aqui'}
                 </p>
                 <Carousel images={files} />
                 <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
-                <h4 className="color1"> {data.title}</h4>
-                <h4 className="color2 margin"> {data.sub_title}</h4>
-                {data.message}
+                <h4 className="color1"> {data.title ?? 'Título'}</h4>
+                <h4 className="color2 margin">
+                  {' '}
+                  {data.sub_title ?? 'Sub Título'}
+                </h4>
+                {data.message ?? 'Sua mensagem'}
               </div>
             </div>
           </div>
@@ -539,16 +545,19 @@ const RenderCard = (
                 style={{ backgroundColor: params.get('card_color')! }}
               >
                 <div className="bark"></div>
-                <p className="text-center text-1xl text-white">
+                <p className="text-center text-2xl text-white">
                   {params.get('names') ?? 'Adicione os nomes aqui'}
                 </p>
                 <Carousel images={files} />
                 <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
-                <h4 className="color1"> {data.title}</h4>
-                <h4 className="color2 margin"> {data.sub_title}</h4>
-                {data.message}
+                <h4 className="color1"> {data.title ?? 'Título'}</h4>
+                <h4 className="color2 margin">
+                  {' '}
+                  {data.sub_title ?? 'Sub Título'}
+                </h4>
+                {data.message ?? 'Sua mensagem'}
               </div>
             </div>
           </div>

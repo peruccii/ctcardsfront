@@ -37,7 +37,7 @@ const Carousel = ({ images }: { images: File[] | null }) => {
   }, [image_urls]);
 
   if (!image_urls || image_urls.length === 0) {
-    return <p>Nenhuma imagem disponível</p>;
+    return <p></p>;
   }
 
   return (
