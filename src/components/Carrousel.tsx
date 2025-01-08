@@ -2,14 +2,19 @@ import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
-const Carousel = ({ images }: { images: File[] | null }) => {
+const Carousel = ({
+  images,
+  plan,
+}: {
+  images: File[] | null;
+  plan?: string;
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [image_urls, setImageURLs] = useState<string[]>([]);
-
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
 
-  const maxImages = params.get('plan') === 'PREMIUM' ? 7 : 3;
+  const maxImages = params.get('plan') || plan === 'PREMIUM' ? 7 : 3;
 
   useEffect(() => {
     if (images) {

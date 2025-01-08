@@ -233,7 +233,7 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
                 <p className="text-center text-2xl font-bold text-white">
                   {data.names ?? 'Nome do casal'}
                 </p>
-                <Carousel images={files} />
+                <Carousel images={files} plan={data.invite_plan} />
                 <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
@@ -426,7 +426,7 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
                 <p className="text-center text-2xl font-bold text-white">
                   {data.names ?? 'Seu nome e de seu amigo(a)'}
                 </p>
-                <Carousel images={files} />
+                <Carousel images={files} plan={data.invite_plan} />
                 <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
@@ -619,7 +619,7 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
                 <p className="text-center text-2xl font-bold text-white">
                   {data.names ?? 'Nome do aniversariante'}
                 </p>
-                <Carousel images={files} />
+                <Carousel images={files} plan={data.invite_plan} />
                 <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
