@@ -235,12 +235,15 @@ const RenderCard = (
                 <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
-                <h4 className="color1"> {data.title ?? 'Título'}</h4>
+                <h4 className="color1 items-center">
+                  {' '}
+                  {data.title ? data.title : '( Título )'}
+                </h4>
                 <h4 className="color2 margin">
                   {' '}
-                  {data.sub_title ?? 'Sub Título'}
+                  {data.sub_title ? data.sub_title : '( Sub Título )'}
                 </h4>
-                {data.message ?? 'Sua mensagem'}
+                {data.message ? data.message : 'Sua mensagem'}
               </div>
             </div>
           </div>
@@ -426,12 +429,15 @@ const RenderCard = (
                 <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
-                <h4 className="color1"> {data.title ?? 'Título'}</h4>
+                <h4 className="color1 items-center">
+                  {' '}
+                  {data.title ? data.title : '( Título )'}
+                </h4>
                 <h4 className="color2 margin">
                   {' '}
-                  {data.sub_title ?? 'Sub Título'}
+                  {data.sub_title ? data.sub_title : '( Sub Título )'}
                 </h4>
-                {data.message ?? 'Sua mensagem'}
+                {data.message ? data.message : 'Sua mensagem'}
               </div>
             </div>
           </div>
@@ -617,12 +623,15 @@ const RenderCard = (
                 <p className="text-center text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
-                <h4 className="color1"> {data.title ?? 'Título'}</h4>
+                <h4 className="color1 items-center">
+                  {' '}
+                  {data.title ? data.title : '( Título )'}
+                </h4>
                 <h4 className="color2 margin">
                   {' '}
-                  {data.sub_title ?? 'Sub Título'}
+                  {data.sub_title ? data.sub_title : '( Sub Título )'}
                 </h4>
-                {data.message ?? 'Sua mensagem'}
+                {data.message ? data.message : 'Sua mensagem'}
               </div>
             </div>
           </div>

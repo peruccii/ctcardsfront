@@ -12,7 +12,7 @@ export default function PaymentMethod() {
   useEffect(() => {
     localStorage.setItem(
       'payment_method',
-      paymentMethod === 'pix' ? 'PIX' : 'STRIPE',
+      paymentMethod === 'pix' ? 'PIX' : 'PIX',
     );
   }, [paymentMethod]);
 

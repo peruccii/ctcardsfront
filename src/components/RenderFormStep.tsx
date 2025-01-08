@@ -252,7 +252,6 @@ const RenderFormStep = (
                       name="date"
                       type="date"
                       value={params.get('date') ?? ''}
-                      placeholder="Digite o valor do campo"
                       className="w-full text-base sm:text-lg"
                       onChange={(e) => {
                         field.handleChange(new Date(e.target.value));
