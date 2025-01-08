@@ -60,7 +60,7 @@ export default function HeroSection() {
 
           <div className="text-center mt-4 ">
             <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
-              Faca de seu cartão personalizado uma
+              Faça de seu cartão personalizado uma
             </h1>
             <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl surpresa">
               surpresa
