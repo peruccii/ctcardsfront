@@ -10,10 +10,11 @@ interface RenderCardWithDataProps {
   data: ResponseInvite;
 }
 
-function calculateDaysBetween(dateString: Date): number {
-  const givenDate = parseISO(dateString as unknown as string);
+function calculateDaysBetween(dateString: string): number {
   const today = new Date();
-  return differenceInDays(givenDate, today);
+  const givenDate = parseISO(dateString);
+
+  return Math.abs(differenceInDays(givenDate, today));
 }
 
 const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
@@ -35,15 +36,15 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
   if (data.date) {
     switch (type) {
       case 'LOVE':
-        const daysTogether = calculateDaysBetween(data.date);
+        const daysTogether = calculateDaysBetween(String(data.date));
         dynamicMessage = `Juntos há ${daysTogether} dias`;
         break;
       case 'BESTFRIENDS':
-        const friendshipDays = calculateDaysBetween(data.date);
+        const friendshipDays = calculateDaysBetween(String(data.date));
         dynamicMessage = `Amizade de ${friendshipDays} dias`;
         break;
       case 'BIRTHDAY':
-        const daysAlive = calculateDaysBetween(data.date);
+        const daysAlive = calculateDaysBetween(String(data.date));
         dynamicMessage = `Parabéns! 🎉 Você já viveu ${daysAlive} dias incríveis!`;
         break;
       default:

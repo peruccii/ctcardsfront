@@ -3,13 +3,14 @@ import Carousel from './Carrousel';
 import { useMessage } from './MessageContext';
 import ReactPlayer from 'react-player';
 import { Pause, Play } from 'lucide-react';
-import { differenceInDays } from 'date-fns';
+import { differenceInDays, parseISO } from 'date-fns';
 
 function calculateDaysBetween(dateString: string): number {
   const today = new Date();
-  return differenceInDays(dateString, today);
-}
+  const givenDate = parseISO(dateString);
 
+  return Math.abs(differenceInDays(givenDate, today));
+}
 const RenderCard = (
   type: string,
   params: URLSearchParams,
