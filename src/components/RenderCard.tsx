@@ -379,6 +379,38 @@ const RenderCard = (
               color: #c0392b;
             }
           `}</style>
+          <div className="absolute top-0 w-full text-center mt-4">
+            <h3 className="text-2xl font-bold text-gray-700">
+              Como ficará seu cartão 👇
+            </h3>
+            {data.url_music && (
+              <div className="flex justify-center items-center mt-4">
+                <button
+                  onClick={handlePlayMusic}
+                  className="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-orange-400 to-red-600 text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  aria-label={play ? 'Pause music' : 'Play music'}
+                >
+                  <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+                  <div className="relative transition-transform duration-300 ease-in-out group-active:scale-90">
+                    {play ? (
+                      <Pause className="h-6 w-6" />
+                    ) : (
+                      <Play className="h-6 w-6 pl-1" />
+                    )}
+                  </div>
+                  <span className="sr-only">{play ? 'Pause' : 'Play'}</span>
+                </button>
+                <ReactPlayer
+                  url={data.url_music}
+                  playing={play}
+                  onPause={() => setPlay(false)}
+                  onPlay={() => setPlay(true)}
+                  width={1}
+                  height={1}
+                />
+              </div>
+            )}
+          </div>
           <div className="card-container">
             <div className="card">
               <div
@@ -386,7 +418,7 @@ const RenderCard = (
                 style={{ backgroundColor: params.get('card_color')! }}
               >
                 <div className="bark"></div>
-                <p className="text-center font-bold text-2xl">
+                <p className="text-center font-bold text-2xl text-white">
                   {params.get('names') ?? 'Adicione os nomes aqui'}
                 </p>
                 <Carousel images={files} />
@@ -538,6 +570,38 @@ const RenderCard = (
               color: #c0392b;
             }
           `}</style>
+          <div className="absolute top-0 w-full text-center mt-4">
+            <h3 className="text-2xl font-bold text-gray-700">
+              Como ficará seu cartão 👇
+            </h3>
+            {data.url_music && (
+              <div className="flex justify-center items-center mt-4">
+                <button
+                  onClick={handlePlayMusic}
+                  className="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-orange-400 to-red-600 text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  aria-label={play ? 'Pause music' : 'Play music'}
+                >
+                  <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+                  <div className="relative transition-transform duration-300 ease-in-out group-active:scale-90">
+                    {play ? (
+                      <Pause className="h-6 w-6" />
+                    ) : (
+                      <Play className="h-6 w-6 pl-1" />
+                    )}
+                  </div>
+                  <span className="sr-only">{play ? 'Pause' : 'Play'}</span>
+                </button>
+                <ReactPlayer
+                  url={data.url_music}
+                  playing={play}
+                  onPause={() => setPlay(false)}
+                  onPlay={() => setPlay(true)}
+                  width={1}
+                  height={1}
+                />
+              </div>
+            )}
+          </div>
           <div className="card-container">
             <div className="card">
               <div

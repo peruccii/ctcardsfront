@@ -230,7 +230,7 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
                 style={{ backgroundColor: card_color }}
               >
                 <div className="bark"></div>
-                <p className="text-center text-1xl text-white">
+                <p className="text-center text-2xl font-bold text-white">
                   {data.names ?? 'Nome do casal'}
                 </p>
                 <Carousel images={files} />
@@ -423,7 +423,7 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
                 style={{ backgroundColor: card_color }}
               >
                 <div className="bark"></div>
-                <p className="text-center text-1xl text-white">
+                <p className="text-center text-2xl font-bold text-white">
                   {data.names ?? 'Seu nome e de seu amigo(a)'}
                 </p>
                 <Carousel images={files} />
@@ -616,7 +616,7 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
                 style={{ backgroundColor: card_color }}
               >
                 <div className="bark"></div>
-                <p className="text-center text-1xl text-white">
+                <p className="text-center text-2xl font-bold text-white">
                   {data.names ?? 'Nome do aniversariante'}
                 </p>
                 <Carousel images={files} />

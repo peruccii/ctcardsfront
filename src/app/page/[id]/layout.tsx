@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Cute Cards',
+  title: 'Cute Cards - Seu Cartão',
   icons: { icon: '/cute_cards_icon.png' },
 };
 
