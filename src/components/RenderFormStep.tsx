@@ -6,14 +6,12 @@ import { Textarea } from './ui/textarea';
 import { FormValues } from '@/interfaces/form_values';
 import { FieldInfo } from './Fieldinfo';
 import { InviteType } from '@/app/enums/invite_type';
-import HandleInvitePlanButtons from './ui/handle-invite-plan-buttons';
-import { InvitePlan } from '@/app/enums/invite_plan';
 import FileUploadDropzone from './ui/upload-photo';
-import { AccordionPlan } from './Accordion';
 import ColorPickerDemo from './ui/color-picker';
 import PaymentMethod from './ui/payment-method';
 import { useMessage } from './MessageContext';
 import { useParamsSet } from './SetParams';
+import { PricingCard } from './PricingCards';
 
 const RenderFormStep = (
   step: number,
@@ -52,18 +50,37 @@ const RenderFormStep = (
       );
     case 1:
       return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 h-96 gap-2 overflow-auto">
-          <HandleInvitePlanButtons
-            text="Basico"
-            formApi={form}
-            value={InvitePlan.BASIC}
-          />
-          <HandleInvitePlanButtons
-            text="Premium"
-            formApi={form}
-            value={InvitePlan.PREMIUM}
-          />
-          <AccordionPlan />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="h-96">
+            <PricingCard
+              onSelect={() => {
+                params.set('plan', 'BASIC');
+                replace(`${pathname}?${params.toString()}`, { scroll: false });
+              }}
+              selected={params.get('plan') === 'BASIC'}
+              name="Básico"
+              price="R$ 10,00"
+              benefits={['Podendo selecionar até 3 fotos', '1 ano de acesso']}
+              color="#6366F1"
+            />
+          </div>
+          <div className="h-96">
+            <PricingCard
+              onSelect={() => {
+                params.set('plan', 'PREMIUM');
+                replace(`${pathname}?${params.toString()}`, { scroll: false });
+              }}
+              selected={params.get('plan') === 'PREMIUM'}
+              name="Premium"
+              price="R$ 20,00"
+              benefits={[
+                'Podendo selecionar até 7 fotos',
+                '5 anos de acesso',
+                'Com direito a música',
+              ]}
+              color="#F97316"
+            />
+          </div>
         </div>
       );
     case 2:
