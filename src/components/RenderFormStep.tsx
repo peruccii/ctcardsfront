@@ -12,6 +12,7 @@ import PaymentMethod from './ui/payment-method';
 import { useMessage } from './MessageContext';
 import { useParamsSet } from './SetParams';
 import { PricingCard } from './PricingCards';
+import { CustomDateInput } from './ui/custom-date-input';
 
 const RenderFormStep = (
   step: number,
@@ -42,7 +43,7 @@ const RenderFormStep = (
             value={InviteType.BESTFRIENDS}
           />
           <HandleInviteTypeButtons
-            text="Aniversario"
+            text="Aniversário"
             formApi={form}
             value={InviteType.BIRTHDAY}
           />
@@ -120,6 +121,7 @@ const RenderFormStep = (
                           data.sub_title,
                           e.target.value,
                           data.url_music,
+                          data.date,
                         );
                       }}
                       placeholder="Digite o valor do campo"
@@ -164,6 +166,7 @@ const RenderFormStep = (
                           data.sub_title,
                           data.email,
                           data.url_music,
+                          data.date,
                         );
                       }}
                     />
@@ -241,6 +244,7 @@ const RenderFormStep = (
                           e.target.value,
                           data.email,
                           data.url_music,
+                          data.date,
                         );
                       }}
                     />
@@ -250,36 +254,7 @@ const RenderFormStep = (
               </form.Field>
             </div>
 
-            <div className="space-y-4">
-              <form.Field
-                name="date"
-                validators={{
-                  onChangeAsyncDebounceMs: 500,
-                  onChangeAsync: ({ value }) =>
-                    value.toISOString().length <= 0 && 'Data campo obrigatorio',
-                }}
-              >
-                {(field) => (
-                  <div>
-                    <Label htmlFor="date" className="text-base sm:text-sm mb-2">
-                      Data
-                    </Label>
-                    <Input
-                      id="date"
-                      name="date"
-                      type="date"
-                      value={params.get('date') ?? ''}
-                      className="w-full text-base sm:text-lg"
-                      onChange={(e) => {
-                        field.handleChange(new Date(e.target.value));
-                        handle('date', e.target.value);
-                      }}
-                    />
-                    <FieldInfo field={field} />
-                  </div>
-                )}
-              </form.Field>
-            </div>
+            <CustomDateInput />
 
             {params.get('plan') === 'PREMIUM' && (
               <div className="space-y-4">
@@ -313,6 +288,7 @@ const RenderFormStep = (
                             data.sub_title,
                             data.email,
                             e.target.value,
+                            data.date,
                           );
                         }}
                       />
@@ -371,7 +347,7 @@ const RenderFormStep = (
                   <Textarea
                     id="message"
                     name="message"
-                    maxLength={307}
+                    maxLength={360}
                     value={data.message ?? undefined}
                     placeholder="Digite sua descrição aqui"
                     className="mt-2 text-lg w-full"
@@ -384,6 +360,7 @@ const RenderFormStep = (
                         data.sub_title,
                         data.email,
                         data.url_music,
+                        data.date,
                       );
                     }}
                   />
@@ -391,7 +368,7 @@ const RenderFormStep = (
                     {field.state.value != undefined
                       ? field.state.value.length
                       : 0}{' '}
-                    / 307
+                    / 360
                   </small>
                   <FieldInfo field={field} />
                 </>

@@ -14,6 +14,7 @@ interface MessageContextType {
     sub_title: string;
     email: string;
     url_music: string;
+    date: Date;
   };
   setData: (
     message: string,
@@ -21,6 +22,7 @@ interface MessageContextType {
     sub_title: string,
     email: string,
     url_music: string,
+    date: Date,
   ) => void;
 }
 
@@ -30,6 +32,7 @@ const FieldObject = {
   sub_title: '',
   email: '',
   url_music: '',
+  date: new Date(),
 };
 
 export interface IFieldObject {
@@ -38,6 +41,7 @@ export interface IFieldObject {
   sub_title: string;
   email: string;
   url_music: string;
+  date: Date;
 }
 
 const MessageContext = createContext<MessageContextType | undefined>(undefined);
@@ -62,8 +66,9 @@ export const MessageProvider = ({ children }: { children: ReactNode }) => {
     sub_title: string,
     email: string,
     url_music: string,
+    date: Date,
   ) => {
-    const newData = { message, title, sub_title, email, url_music };
+    const newData = { message, title, sub_title, email, url_music, date };
     setState(newData);
   };
 

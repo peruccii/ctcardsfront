@@ -8,17 +8,14 @@ export const removeFromMessageData = (searchTerm: string) => {
 
   const parsedData = JSON.parse(storedData);
 
-  // Verifica se `imageUrls` existe e é um array válido
   if (parsedData.image_urls) {
     const imageArray = JSON.parse(parsedData.image_urls);
 
     if (Array.isArray(imageArray)) {
-      // Filtra os itens que NÃO incluem o `searchTerm`
       const updatedArray = imageArray.filter(
         (item: string) => !item.includes(searchTerm),
       );
 
-      // Atualiza os dados no localStorage somente se algo foi alterado
       if (updatedArray.length !== imageArray.length) {
         parsedData.image_urls = JSON.stringify(updatedArray);
         localStorage.setItem('messageData', JSON.stringify(parsedData));

@@ -15,6 +15,7 @@ import { InviteUseCases } from './api/invite-use-cases';
 import useUploadPhotos from '@/components/useUploadPhotos';
 import MakeInvite from './factory/make-invite';
 import { useMessage } from '@/components/MessageContext';
+import { verifySelects } from '@/components/verify-selects';
 
 export default function MultiStepForm() {
   const searchParams = useSearchParams();
@@ -29,15 +30,18 @@ export default function MultiStepForm() {
   );
 
   const handleNext = () => {
-    if (Number(searchParams.get('step')) < steps.length - 1) {
-      params.set('step', String(Number(searchParams.get('step')) + 1));
+    const currentStep = Number(searchParams.get('step'));
+    if (!verifySelects(currentStep, params)) {
+      return;
+    }
+
+    if (currentStep < steps.length - 1) {
+      params.set('step', String(currentStep + 1));
       replace(`${pathname}?${params.toString()}`, { scroll: false });
-      setCurrentStepContent(
-        stepsTitleContent[Number(searchParams.get('step')) + 1],
-      );
+
+      setCurrentStepContent(stepsTitleContent[currentStep + 1]);
     }
   };
-
   const handlePrev = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (Number(searchParams.get('step')) > 0) {
@@ -104,28 +108,16 @@ export default function MultiStepForm() {
                 >
                   Voltar
                 </button>
-                <form.Subscribe
-                  selector={(state) => [state.canSubmit, state.isSubmitting]}
-                  // eslint-disable-next-line react/no-children-prop
-                  children={([canSubmit]) => (
-                    <button
-                      className={`py-2.5 px-6 text-sm rounded-full font-semibold text-center cursor-pointer transition-all duration-500 text-white shadow-xs ${
-                        !canSubmit
-                          ? 'bg-gray-500 shadow-none cursor-not-allowed'
-                          : 'bg-gradient-to-r from-orange-600 via-orange-500 to-orange-400 shadow-lg shadow-orange-500/50 hover:bg-gradient-to-l'
-                      }`}
-                      type={
-                        searchParams.get('step') === '4' ? 'submit' : 'button'
-                      }
-                      onClick={handleNext}
-                      disabled={!canSubmit}
-                    >
-                      {searchParams.get('step') === '4'
-                        ? 'Finalizar'
-                        : 'Prosseguir'}
-                    </button>
-                  )}
-                />
+
+                <button
+                  className={`py-2.5 px-6 text-sm rounded-full font-semibold text-center cursor-pointer transition-all duration-500 text-white shadow-xs ${'bg-gradient-to-r from-orange-600 via-orange-500 to-orange-400 shadow-lg shadow-orange-500/50 hover:bg-gradient-to-l'}`}
+                  type={searchParams.get('step') === '4' ? 'submit' : 'button'}
+                  onClick={handleNext}
+                >
+                  {searchParams.get('step') === '4'
+                    ? 'Finalizar'
+                    : 'Prosseguir'}
+                </button>
               </div>
             </form>
           </div>

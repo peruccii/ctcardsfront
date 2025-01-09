@@ -4,5 +4,5 @@ export const stepsTitleContent = [
   'Selecione o plano',
   'Preencha as informações necessárias',
   'Adicione informações adicionais',
-  'Escolha um metodo de pagamento',
+  'Escolha um método de pagamento',
 ];

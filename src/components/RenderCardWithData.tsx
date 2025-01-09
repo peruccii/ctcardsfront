@@ -4,19 +4,20 @@ import { useState } from 'react';
 import { Pause, Play } from 'lucide-react';
 import { useFetchImagesAsFiles } from './useFetchImagesFromFirebase';
 import ReactPlayer from 'react-player';
-import { differenceInDays, parseISO } from 'date-fns';
+import { differenceInDays } from 'date-fns';
 interface RenderCardWithDataProps {
   type: string;
   data: ResponseInvite;
 }
 
 function calculateDaysBetween(dateString: string): number {
+  const [day, month, year] = dateString.split('/').map(Number);
+  const givenDate = new Date(year, month - 1, day);
+
   const today = new Date();
-  const givenDate = parseISO(dateString);
 
   return Math.abs(differenceInDays(givenDate, today));
 }
-
 const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
   type,
   data,
@@ -235,7 +236,7 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
                   {data.names ?? 'Nome do casal'}
                 </p>
                 <Carousel images={files} plan={data.invite_plan} />
-                <p className="text-center text-white">{dynamicMessage}</p>
+                <p className="text-center mt-2 text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
                 <h4 className="color1"> {data.title}</h4>
@@ -428,7 +429,7 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
                   {data.names ?? 'Seu nome e de seu amigo(a)'}
                 </p>
                 <Carousel images={files} plan={data.invite_plan} />
-                <p className="text-center text-white">{dynamicMessage}</p>
+                <p className="text-center mt-2 text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
                 <h4 className="color1"> {data.title}</h4>
@@ -621,7 +622,7 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
                   {data.names ?? 'Nome do aniversariante'}
                 </p>
                 <Carousel images={files} plan={data.invite_plan} />
-                <p className="text-center text-white">{dynamicMessage}</p>
+                <p className="text-center mt-2 text-white">{dynamicMessage}</p>
               </div>
               <div className="details">
                 <h4 className="color1"> {data.title}</h4>
