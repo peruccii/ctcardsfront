@@ -304,6 +304,7 @@ const RenderFormStep = (
               setFiles={setFiles}
               files={files}
               formApi={form}
+              searchParams={params}
             />
           </div>
           <div className="flex gap-4">
