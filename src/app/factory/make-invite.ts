@@ -22,7 +22,7 @@ function MakeInvite(
   formdata.append('card_color', cardColor!);
   formdata.append('bg_color', searchParams.get('bg') ?? '#FFFFFF');
   formdata.append('names', searchParams.get('names')!);
-  formdata.append('date', date.toISOString());
+  formdata.append('date', date && date.toISOString());
   formdata.append('createdAt', dateNow);
   formdata.append('invite_type', searchParams.get('type')!);
   formdata.append('invite_plan', searchParams.get('plan')!);

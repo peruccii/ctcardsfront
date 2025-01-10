@@ -153,13 +153,15 @@ const RenderCard = (
               padding: 10px;
               z-index: -1;
               margin-top: 70px;
+              word-break: break-word; /* Quebra palavras longas */
+              overflow-wrap: break-word;
             }
 
-            .card .details p {
-              font-size: 15px;
-              line-height: 1;
-              padding: 5px 0;
-              text-align: left;
+            .details p {
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
 
             .image {
@@ -244,7 +246,7 @@ const RenderCard = (
                   {' '}
                   {data.sub_title ? data.sub_title : '( Sub Título )'}
                 </h4>
-                {data.message ? data.message : 'Sua mensagem'}
+                <p>{data.message ? data.message : 'Sua mensagem'}</p>
               </div>
             </div>
           </div>
@@ -356,15 +358,16 @@ const RenderCard = (
               padding: 10px;
               z-index: -1;
               margin-top: 70px;
+              word-break: break-word; /* Quebra palavras longas */
+              overflow-wrap: break-word;
             }
 
-            .card .details p {
-              font-size: 15px;
-              line-height: 1;
-              padding: 5px 0;
-              text-align: left;
+            .details p {
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
-
             .card .details h4 {
               text-align: center;
               font-family: 'Amatic SC', cursive;
@@ -438,7 +441,7 @@ const RenderCard = (
                   {' '}
                   {data.sub_title ? data.sub_title : '( Sub Título )'}
                 </h4>
-                {data.message ? data.message : 'Sua mensagem'}
+                <p>{data.message ? data.message : 'Sua mensagem'}</p>
               </div>
             </div>
           </div>
@@ -541,7 +544,6 @@ const RenderCard = (
               transition: 0.6s;
               box-shadow: 300px 200px 100px rgba(0, 0, 0, 0.4) inset;
             }
-
             .card .details {
               position: absolute;
               top: 0;
@@ -550,13 +552,15 @@ const RenderCard = (
               padding: 10px;
               z-index: -1;
               margin-top: 70px;
+              word-break: break-word; /* Quebra palavras longas */
+              overflow-wrap: break-word;
             }
 
-            .card .details p {
-              font-size: 15px;
-              line-height: 1;
-              padding: 5px 0;
-              text-align: left;
+            .details p {
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
 
             .card .details h4 {
@@ -632,7 +636,7 @@ const RenderCard = (
                   {' '}
                   {data.sub_title ? data.sub_title : '( Sub Título )'}
                 </h4>
-                {data.message ? data.message : 'Sua mensagem'}
+                <p>{data.message ? data.message : 'Sua mensagem'}</p>
               </div>
             </div>
           </div>

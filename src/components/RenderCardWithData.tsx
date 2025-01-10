@@ -34,7 +34,7 @@ const RenderCardWithData: React.FC<RenderCardWithDataProps> = ({
   }
 
   let dynamicMessage = '';
-  if (data.date) {
+  if (data.date != null) {
     switch (type) {
       case 'LOVE':
         const daysTogether = calculateDaysBetween(String(data.date));
